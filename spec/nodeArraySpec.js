@@ -1,7 +1,7 @@
-describe('NodeArray', function() {
+fdescribe('NodeArray', function() {
     var GR = require('../src/graph_theory');
     var Node = GR.Node;
-    var NodeArray = GR.NodeArray;
+    var NodeArray = GR.NodeArray(Node);
     var myNode, myArray, myAltArray, n1, n2, n3, n4;
     beforeAll(function() {
         console.log('\n.........NodeArray Spec.........');
@@ -21,36 +21,36 @@ describe('NodeArray', function() {
         myAltArray.push(n2);
         myAltArray.push(n3);
     });
-    describe('.assignNode(nClass)', function() {
-        let SubClass, BaseClass, mySArray, sn1, sn2, sn3;
-        class SubNode extends Node {
-            showSelf() {
-                console.log('I am part of a subclass');
-            }
-        }
-        beforeEach(function() {
-            SubClass = SubNode;
-            BaseClass = GR.NodeArray;
-            sn1 = new Node("sn1", 0);
-            sn2 = new Node("sn2", 1);
-            sn3 = new Node("sn3", 2);
-            sn4 = new Node("sn4", 3);
+    // describe('.assignNode(nClass)', function() {
+    //     let SubClass, BaseClass, mySArray, sn1, sn2, sn3;
+    //     class SubNode extends Node {
+    //         showSelf() {
+    //             console.log('I am part of a subclass');
+    //         }
+    //     }
+    //     beforeEach(function() {
+    //         SubClass = SubNode;
+    //         BaseClass = GR.NodeArray;
+    //         sn1 = new Node("sn1", 0);
+    //         sn2 = new Node("sn2", 1);
+    //         sn3 = new Node("sn3", 2);
+    //         sn4 = new Node("sn4", 3);
 
-        });
-        describe('when given a new Node dependency', () => {
-            it('places the node dependency as a data property on the prototype', function() {
-                BaseClass.assignNode(SubClass);
-                expect(BaseClass.prototype.Node).toBe(SubNode);
-            });
-            it('defaults to Node', function() {
-                BaseClass.assignNode();
-                expect(BaseClass.prototype.Node).toBe(Node);
-                expect(BaseClass.prototype.Node).not.toBe(SubNode);
+    //     });
+    //     describe('when given a new Node dependency', () => {
+    //         it('places the node dependency as a data property on the prototype', function() {
+    //             BaseClass.assignNode(SubClass);
+    //             expect(BaseClass.prototype.Node).toBe(SubNode);
+    //         });
+    //         it('defaults to Node', function() {
+    //             BaseClass.assignNode();
+    //             expect(BaseClass.prototype.Node).toBe(Node);
+    //             expect(BaseClass.prototype.Node).not.toBe(SubNode);
 
-            });
-        });
+    //         });
+    //     });
 
-    });
+    // });
     describe('init', function() {
         it('is a typeof Array', function() {
             expect(myArray instanceof Array).toBeTrue();

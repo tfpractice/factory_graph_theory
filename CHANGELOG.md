@@ -1,6 +1,12 @@
 ## Changelog
 ## 4.0.0-alpha – 2016-07-18 
 ### Added
+* NodeArray exports a function that returns a class after dependency is injected
+### Changed
+### Removed
+
+## 4.0.0-alpha – 2016-07-18 
+### Added
 * Prototypal dependency assignment via static .assign[ClassName] for greater extensibility
 * RobustArray module acts as a mixin for set theory methods
 * RobustArray#SetifyType(BaseType) creates a set of out a base type of elements
