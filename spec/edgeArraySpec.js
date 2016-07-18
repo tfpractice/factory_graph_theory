@@ -1,9 +1,10 @@
-describe('EdgeArray', function() {
+fdescribe('EdgeArray', function() {
     var GR = require('../src/graph_theory');
     var Node = GR.Node;
-    var Edge = GR.Edge;
-    var NodeArray = GR.NodeArray;
-    var EdgeArray = GR.EdgeArray;
+    var NodeArray = GR.NodeArray(Node);
+    var Edge = GR.Edge(NodeArray, Node);
+
+    var EdgeArray = GR.EdgeArray(Edge, NodeArray, Node);
     var myEdge, altEdge, la, nyc, dc, myArray;
     var e0, e1, e2, e3, e4, n00, n01, n10, n11, n20, n21, n30, n31, bArray, cArray;
     beforeAll(function() {
@@ -17,25 +18,25 @@ describe('EdgeArray', function() {
         altEdge = new Edge(nyc, dc, 10);
         myArray = new EdgeArray(myEdge);
     });
-    describe('#assignEdge', function() {
-        describe('when given a new class dependency ', () => {
-            class tempNodeArray extends NodeArray {}
-            tempNodeArray.assignNode();
-            class SubEdge extends Edge {}
-            SubEdge.assignNodeArray(tempNodeArray);
-            class SEA extends EdgeArray {}
-            SEA.assignEdge(SubEdge);
-            it('sets Edge onto protoype', function() {
-                expect(SEA.prototype.Edge).toBe(SubEdge);
-            });
-            it('sets NodeArray onto protoype', function() {
-                expect(SEA.prototype.NodeArray).toBe(tempNodeArray);
-            });
-            it('sets Node property onto protoype', function() {
-                expect(SEA.prototype.Node).toBe(tempNodeArray.prototype.Node);
-            });
-        });
-    });
+    // describe('#assignEdge', function() {
+    //     describe('when given a new class dependency ', () => {
+    //         class tempNodeArray extends NodeArray {}
+    //         tempNodeArray.assignNode();
+    //         class SubEdge extends Edge {}
+    //         SubEdge.assignNodeArray(tempNodeArray);
+    //         class SEA extends EdgeArray {}
+    //         SEA.assignEdge(SubEdge);
+    //         it('sets Edge onto protoype', function() {
+    //             expect(SEA.prototype.Edge).toBe(SubEdge);
+    //         });
+    //         it('sets NodeArray onto protoype', function() {
+    //             expect(SEA.prototype.NodeArray).toBe(tempNodeArray);
+    //         });
+    //         it('sets Node property onto protoype', function() {
+    //             expect(SEA.prototype.Node).toBe(tempNodeArray.prototype.Node);
+    //         });
+    //     });
+    // });
     describe('init', function() {
         it('is a typeof Array', function() {
             expect(myArray instanceof Array).toBeTrue();
@@ -149,14 +150,14 @@ describe('EdgeArray', function() {
             n21 = new Node("21");
             n30 = new Node("30");
             n31 = new Node("31");
-            e0 = new GR.Edge(n00, n01);
-            e1 = new GR.Edge(n10, n11);
-            e2 = new GR.Edge(n20, n21);
-            e3 = new GR.Edge(n30, n31);
-            e4 = new GR.Edge(n20, n01);
-            bArray = new GR.EdgeArray(e0);
+            e0 = new Edge(n00, n01);
+            e1 = new Edge(n10, n11);
+            e2 = new Edge(n20, n21);
+            e3 = new Edge(n30, n31);
+            e4 = new Edge(n20, n01);
+            bArray = new EdgeArray(e0);
             bArray.push(e1);
-            cArray = new GR.EdgeArray(e2);
+            cArray = new EdgeArray(e2);
             cArray.push(e3);
         });
         describe('set methods', function() {
