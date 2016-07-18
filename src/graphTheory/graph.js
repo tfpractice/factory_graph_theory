@@ -17,14 +17,14 @@ module.exports = function(EdgeArray, Edge, ComponentArray, NodeArray, NodeClass)
          * @param  {Function} EAClass the EdgeArray function this class depends upon
          * @return {Function}  the updated Graph class
          */
-        static assignEdgeArray(EAClass = EdgeArray) {
-            this.prototype.EdgeArray = EAClass;
-            this.prototype.Edge = EAClass.prototype.Edge;
-            this.prototype.NodeArray = EAClass.prototype.NodeArray;
-            this.prototype.Node = EAClass.prototype.Node;
-            this.prototype.ComponentArray = ComponentArray.assignNodeArray(EAClass.prototype.NodeArray);
-            return this;
-        }
+        // static assignEdgeArray(EAClass = EdgeArray) {
+        // this.prototype.EdgeArray = EAClass;
+        // this.prototype.Edge = EAClass.prototype.Edge;
+        // this.prototype.NodeArray = EAClass.prototype.NodeArray;
+        // this.prototype.Node = EAClass.prototype.Node;
+        // this.prototype.ComponentArray = ComponentArray.assignNodeArray(EAClass.prototype.NodeArray);
+        // return this;
+        // }
         /**
          * creates a Graph object
          * @param  {NodeArray} nodes the graph's nodes
@@ -54,7 +54,7 @@ module.exports = function(EdgeArray, Edge, ComponentArray, NodeArray, NodeClass)
              * the graph's edges
              * @type {EdgeArray}
              */
-            this.edges =new EdgeArray;
+            this.edges = new EdgeArray;
         }
         /**
          * assigns/typecasts the components attibute

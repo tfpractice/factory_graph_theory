@@ -1,12 +1,11 @@
-describe('ComponentArray', function() {
+fdescribe('ComponentArray', function() {
     var GR = require('../src/graph_theory');
     var Node = GR.Node;
     var NodeArray = GR.NodeArray(Node);
     var Edge = GR.Edge(NodeArray, Node);
-
-    // var EdgeArray = GR.EdgeArray(Edge, NodeArray, Node);
     var ComponentArray = GR.ComponentArray(NodeArray, Node);
-    var Graph = GR.Graph;
+    var EdgeArray = GR.EdgeArray(Edge, NodeArray, Node);
+    const Graph = GR.Graph(EdgeArray, Edge, ComponentArray, NodeArray, Node);
     let myGraph, gNodes, n0, nabe0, e0, e1, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12;
     let nabes1, nabes2, nabes3, nabes6, nabes7, comp1, comp6, comp7;
     let myComponents;
@@ -50,23 +49,23 @@ describe('ComponentArray', function() {
             // nabes7 = myGraph.getNeighbors(v7);
             myComponents = new ComponentArray();
         });
-        describe('#assignNodeArray(NAClass)', function() {
-            describe('when given a new class dependency ', () => {
-                class tempNodeArray extends NodeArray {}
-                tempNodeArray.assignNode();
-                class SubCompArray extends ComponentArray {}
-                SubCompArray.assignNodeArray(tempNodeArray);
-                it('sets NodeArray onto protoype', function() {
-                    expect(SubCompArray.prototype.NodeArray).toBe(tempNodeArray);
-                });
-                it('sets Node property onto protoype', function() {
-                    expect(SubCompArray.prototype.Node).toBe(tempNodeArray.prototype.Node);
-                });
-                it('returns the augmented function', function() {
-                    expect(SubCompArray.assignNodeArray(tempNodeArray)).toBe(SubCompArray);
-                });
-            });
-        });
+        // describe('#assignNodeArray(NAClass)', function() {
+        //     describe('when given a new class dependency ', () => {
+        //         class tempNodeArray extends NodeArray {}
+        //         tempNodeArray.assignNode();
+        //         class SubCompArray extends ComponentArray {}
+        //         SubCompArray.assignNodeArray(tempNodeArray);
+        //         it('sets NodeArray onto protoype', function() {
+        //             expect(SubCompArray.prototype.NodeArray).toBe(tempNodeArray);
+        //         });
+        //         it('sets Node property onto protoype', function() {
+        //             expect(SubCompArray.prototype.Node).toBe(tempNodeArray.prototype.Node);
+        //         });
+        //         it('returns the augmented function', function() {
+        //             expect(SubCompArray.assignNodeArray(tempNodeArray)).toBe(SubCompArray);
+        //         });
+        //     });
+        // });
         describe('#push', () => {
             describe('when there is no intersecting component', () => {
                 it('pushes a NodeArray to the components array', function() {

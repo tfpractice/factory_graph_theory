@@ -3,11 +3,8 @@ fdescribe('Graph', function() {
     var Node = GR.Node;
     var NodeArray = GR.NodeArray(Node);
     var Edge = GR.Edge(NodeArray, Node);
-
-
     var ComponentArray = GR.ComponentArray(NodeArray, Node);
     var EdgeArray = GR.EdgeArray(Edge, NodeArray, Node);
-
     const Graph = GR.Graph(EdgeArray, Edge, ComponentArray, NodeArray, Node);
     beforeAll(function() {
         console.log('\n.........Graph Spec.........');
