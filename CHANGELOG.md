@@ -2,6 +2,7 @@
 ## 0.0.0-alpha – 2016-07-18 
 ### Added
 * modules each export a function that takes a list of dependencies and return the appropriate class
+* removes .assign[Dependency] from each class
 ### Changed
 ### Removed
 
