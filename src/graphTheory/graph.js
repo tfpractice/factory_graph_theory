@@ -3,7 +3,7 @@ var NodeArray = require('./node_array');
 var Edge = require('./edge');
 var EdgeArray = require('./edge_array');
 var ComponentArray = require('./component_array');
-module.exports = function(EdgeArray, Edge, NodeArray, NodeClass) {
+module.exports = function(EdgeArray, Edge, ComponentArray, NodeArray, NodeClass) {
     let Node = NodeClass;
     /**
      * represents a Graph
@@ -54,7 +54,7 @@ module.exports = function(EdgeArray, Edge, NodeArray, NodeClass) {
              * the graph's edges
              * @type {EdgeArray}
              */
-            this.edges = new this.EdgeArray;
+            this.edges =new EdgeArray;
         }
         /**
          * assigns/typecasts the components attibute
@@ -64,7 +64,7 @@ module.exports = function(EdgeArray, Edge, NodeArray, NodeClass) {
              * the graph's components
              * @type {ComponentArray}
              */
-            this.components = new this.ComponentArray();
+            this.components = new ComponentArray();
         }
         /**
          * @see [delegated to NodeArray#push] {@link module:GraphTheory.NodeArray#push}
@@ -134,7 +134,7 @@ module.exports = function(EdgeArray, Edge, NodeArray, NodeClass) {
          * @return {Edge} the newly added edge
          */
         createEdge(sNode, dNode, weight) {
-            this.addEdge(new this.Edge(sNode, dNode, weight));
+            this.addEdge(new Edge(sNode, dNode, weight));
             return this.edges.edgeByNodes(sNode, dNode);
         }
         /**
