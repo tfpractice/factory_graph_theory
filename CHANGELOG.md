@@ -1,7 +1,7 @@
 ## Changelog
-## 4.0.0-alpha – 2016-07-18 
+## 0.0.0-alpha – 2016-07-18 
 ### Added
-* NodeArray exports a function that returns a class after dependency is injected
+* modules each export a function that takes a list of dependencies and return the appropriate class
 ### Changed
 ### Removed
 
