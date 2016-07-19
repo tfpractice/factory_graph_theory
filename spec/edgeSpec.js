@@ -1,9 +1,8 @@
-describe('Edge', function() {
+fdescribe('Edge', function() {
     var GR = require('../src/graph_theory');
     var Node = GR.Node;
-    var NodeArray = GR.NodeArray(Node);
-    var Edge = GR.Edge(NodeArray, Node);
-
+    var NodeArray = GR.NodeArray
+    var Edge = GR.Edge;
     var myEdge, altEdge, la, nyc, dc;
     beforeAll(function() {
         console.log('\n.........Edge Spec.........');
