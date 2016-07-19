@@ -13,19 +13,6 @@ module.exports = function(EdgeArray, Edge, ComponentArray, NodeArray, NodeClass)
      */
     class Graph {
         /**
-         * defines EdgeArrayClass (and associated dependencies) on the Prototype chain for runtime extension
-         * @param  {Function} EAClass the EdgeArray function this class depends upon
-         * @return {Function}  the updated Graph class
-         */
-        // static assignEdgeArray(EAClass = EdgeArray) {
-        // this.prototype.EdgeArray = EAClass;
-        // this.prototype.Edge = EAClass.prototype.Edge;
-        // this.prototype.NodeArray = EAClass.prototype.NodeArray;
-        // this.prototype.Node = EAClass.prototype.Node;
-        // this.prototype.ComponentArray = ComponentArray.assignNodeArray(EAClass.prototype.NodeArray);
-        // return this;
-        // }
-        /**
          * creates a Graph object
          * @param  {NodeArray} nodes the graph's nodes
          * @return {Graph}
@@ -433,10 +420,10 @@ module.exports = function(EdgeArray, Edge, ComponentArray, NodeArray, NodeClass)
             }
         }
     };
-    // Graph.assignEdgeArray();
-    return Graph;
+
     /**
      * [A Graph]{@link module:GraphTheory.Graph}
      * @typedef {module:GraphTheory.Graph} Graph
      */
+    return Graph;
 }

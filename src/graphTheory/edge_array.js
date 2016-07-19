@@ -17,17 +17,6 @@ module.exports = function(Edge, NodeArray, NodeClass) {
      */
     class EdgeArray extends RobustArray.SetifyType(Edge) {
         /**
-         * defines EdgeClass (and associated dependencies) on the Prototype chain for runtime extension
-         * @param  {Function} EClass the Edge function this class depends upon
-         * @return {Function} EdgeArray the updated EdgeArray class
-         */
-        // static assignEdge(EClass = Edge) {
-        // this.prototype.Edge = EClass;
-        // this.prototype.NodeArray = EClass.prototype.NodeArray;
-        // this.prototype.Node = EClass.prototype.Node;
-        // return this;
-        // }
-        /**
          * Filters the edges by those which contain the specified node
          * @param  {Node} nArg the node in question
          * @return {EdgeArray} the filtered array
@@ -69,7 +58,6 @@ module.exports = function(Edge, NodeArray, NodeClass) {
         }
 
     }
-    // EdgeArray.assignEdge();
     /**
      * [An EdgeArray]{@link module:GraphTheory.EdgeArray}
      * @typedef {module:GraphTheory.EdgeArray} EdgeArray

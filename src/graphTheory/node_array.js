@@ -4,8 +4,6 @@ var RobustArray = require('./robust_array');
 
 module.exports = function(NodeClass) {
     let Node = NodeClass;
-    // class NodeArray extends RobustArray.SetifyType(Node) {};
-
     /**
      * represents a set of Nodes
      * @exports NodeArray
@@ -13,17 +11,8 @@ module.exports = function(NodeClass) {
      * @extends {RobustArray}
      * @memberOf! module:GraphTheory
      */
-    class NodeArray extends RobustArray.SetifyType(Node) {
-        /**
-         * defines NodeClass  on the Prototype chain for runtime extension
-         * @param  {Function} NClass the Node function this class depends upon
-         * @return {Function}  the updated NodeArray class
-         */
-        // static assignNode(nClass = Node) {
-        // this.prototype.Node = nClass;
-    }
+    class NodeArray extends RobustArray.SetifyType(Node) {}
 
-    // NodeArray.assignNode();
     return NodeArray;
 }
 /**

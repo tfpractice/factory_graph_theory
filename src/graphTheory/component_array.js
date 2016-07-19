@@ -10,17 +10,6 @@ module.exports = function(NodeArray, NodeClass) {
      * @extends {RobustArray}
      */
     class ComponentArray extends RobustArray.SetifyType(NodeArray) {
-
-        /**
-         * Places NodeArray (and associated dependencies) in the Prototype chain for classical extension
-         * @param  {Function} NAClass the NodeArray class this Class depends upon
-         * @return {Function}
-         */
-        // static assignNodeArray(NAClass = NodeArray) {
-        //     this.prototype.NodeArray = NAClass;
-        //     this.prototype.Node = NAClass.prototype.Node;
-        //     return this;
-        // }
         /**
          * adds a component to the graph if not present
          * @param {Component} compArg
@@ -63,8 +52,6 @@ module.exports = function(NodeArray, NodeClass) {
         }
 
     };
-
-    // ComponentArray.assignNodeArray();
     /**
      * [An Set of mutually exclusive NodeArrays]{@link module:GraphTheory.ComponentArray}
      * @typedef {module:GraphTheory.ComponentArray} ComponentArray

@@ -13,16 +13,6 @@ module.exports = function(NodeArray, NodeClass) {
     class Edge {
 
         /**
-         * Places NodeArray (and associated dependencies) in the Prototype chain for runtime extension
-         * @param  {Function} NAClass the NodeArray class this Class depends upon
-         * @return {Function}
-         */
-        // static assignNodeArray(NAClass = NodeArray) {
-        // this.prototype.NodeArray = NAClass;
-        // this.prototype.Node = NAClass.prototype.Node;
-        // return this;
-        // }
-        /**
          * creates an edge connecting two nodes
          * @param  {Node}   n1
          * @param  {Node}   n2
@@ -103,7 +93,6 @@ module.exports = function(NodeArray, NodeClass) {
         }
 
     }
-    // Edge.assignNodeArray();
     /**
      * [An Edge]{@link module:GraphTheory.Edge}
      * @typedef {module:GraphTheory.Edge} Edge
