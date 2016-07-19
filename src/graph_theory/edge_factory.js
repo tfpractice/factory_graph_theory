@@ -1,8 +1,13 @@
 var Node = require('./node');
 var NodeArray = require('./node_array_factory');
 
+/**
+ * Constructs an Edge class given dependencies
+ * @param  {Function} NodeArray      dependency
+ * @param  {Function} NodeClass      dependency
+ * @return {Function}                The resulting Edge class
+ */
 module.exports = function(NodeArray, NodeClass) {
-    // let NodeArray = NodeArray;
     let Node = NodeClass;
     /**
      * represents a connection between nodes

@@ -1,5 +1,11 @@
 var NodeArray = require('./node_array_factory');
 var RobustArray = require('./robust_array_factory');
+/**
+ * Constructs a ComponentArray class given dependencies
+ * @param  {Function} NodeArray      dependency
+ * @param  {Function} NodeClass      dependency
+ * @return {Function}                The resulting ComponentArray class
+ */
 module.exports = function(NodeArray, NodeClass) {
     let Node = NodeClass;
     /**

@@ -2,9 +2,9 @@
  * a type-specific array class implementing set theory
  * @exports RobustArray
  * @constructor
- * @param  {Object} BaseType the data type of objects stored in this array
+ * @param  {Function} BaseType the data type/Class of objects stored in this array
  * @extends {Array}
- * @return {Function}          the new class
+ * @return {Function}     an array class build around the  BaseType
  * @memberOf! module:GraphTheory
  */
 var RobustArray = BaseType => class extends Array {

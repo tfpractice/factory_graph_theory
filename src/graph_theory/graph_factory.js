@@ -3,6 +3,16 @@ var NodeArray = require('./node_array_factory');
 var Edge = require('./edge_factory');
 var EdgeArray = require('./edge_array_factory');
 var ComponentArray = require('./component_array_factory');
+
+/**
+ * Constructs a Graph Class by dependencies
+ * @param  {Function} EdgeArray      THe EdgeArray class
+ * @param  {Function} Edge           The Edge Class
+ * @param  {Fucntion} ComponentArray dependency
+ * @param  {Function} NodeArray      dependency
+ * @param  {Function} NodeClass      dependency
+ * @return {Function}                The resulting Graph class
+ */
 module.exports = function(EdgeArray, Edge, ComponentArray, NodeArray, NodeClass) {
     let Node = NodeClass;
     /**

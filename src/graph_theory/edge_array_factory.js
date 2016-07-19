@@ -4,9 +4,16 @@ var Edge = require('./edge_factory');
 // var DirectedEdge = require('./directedEdge');
 var RobustArray = require('./robust_array_factory');
 
+
+/**
+ * Constructs an EdgeArray Class by dependencies
+ * @param  {Function} Edge           The Edge Class
+ * @param  {Function} NodeArray      dependency
+ * @param  {Function} NodeClass      dependency
+ * @return {Function}                The resulting EdgeArray class
+ */
 module.exports = function(Edge, NodeArray, NodeClass) {
-    // let Edge = Edge;
-    // let NodeArray = NodeArray;
+
     let Node = NodeClass;
     /**
      * represents a set of Edges
