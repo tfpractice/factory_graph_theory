@@ -1,4 +1,4 @@
-fdescribe('EdgeArray', function() {
+describe('EdgeArray', function() {
     var GR = require('../src/graph_theory');
     var Node = GR.Node;
     var NodeArray = GR.NodeArray(Node);
