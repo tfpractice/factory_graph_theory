@@ -1,8 +1,8 @@
 var Node = require('./node');
-var NodeArray = require('./node_array');
-var Edge = require('./edge');
+var NodeArray = require('./node_array_factory');
+var Edge = require('./edge_factory');
 // var DirectedEdge = require('./directedEdge');
-var RobustArray = require('./robust_array');
+var RobustArray = require('./robust_array_factory');
 
 module.exports = function(Edge, NodeArray, NodeClass) {
     // let Edge = Edge;

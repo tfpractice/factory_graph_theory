@@ -1,5 +1,5 @@
-var NodeArray = require('./node_array');
-var RobustArray = require('./robust_array');
+var NodeArray = require('./node_array_factory');
+var RobustArray = require('./robust_array_factory');
 module.exports = function(NodeArray, NodeClass) {
     let Node = NodeClass;
     /**

@@ -1,5 +1,5 @@
 var Node = require('./node');
-var NodeArray = require('./node_array');
+var NodeArray = require('./node_array_factory');
 
 module.exports = function(NodeArray, NodeClass) {
     // let NodeArray = NodeArray;

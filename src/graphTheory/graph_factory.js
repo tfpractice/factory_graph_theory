@@ -1,8 +1,8 @@
 var Node = require('./node');
-var NodeArray = require('./node_array');
-var Edge = require('./edge');
-var EdgeArray = require('./edge_array');
-var ComponentArray = require('./component_array');
+var NodeArray = require('./node_array_factory');
+var Edge = require('./edge_factory');
+var EdgeArray = require('./edge_array_factory');
+var ComponentArray = require('./component_array_factory');
 module.exports = function(EdgeArray, Edge, ComponentArray, NodeArray, NodeClass) {
     let Node = NodeClass;
     /**

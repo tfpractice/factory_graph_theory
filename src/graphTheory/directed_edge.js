@@ -1,6 +1,6 @@
 var Node = require('./node');
-var NodeArray = require('./node_array');
-var Edge = require('./edge');
+var NodeArray = require('./node_array_factory');
+var Edge = require('./edge_factory');
 
 /**
  * represents a connection between nodes
