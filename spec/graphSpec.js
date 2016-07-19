@@ -1,11 +1,11 @@
-describe('Graph', function() {
+fdescribe('Graph', function() {
     var GR = require('../src/graph_theory');
     var Node = GR.Node;
-    var NodeArray = GR.NodeArray(Node);
-    var Edge = GR.Edge(NodeArray, Node);
-    var ComponentArray = GR.ComponentArray(NodeArray, Node);
-    var EdgeArray = GR.EdgeArray(Edge, NodeArray, Node);
-    const Graph = GR.Graph(EdgeArray, Edge, ComponentArray, NodeArray, Node);
+    var NodeArray = GR.NodeArray;
+    var Edge = GR.Edge;
+    var ComponentArray = GR.ComponentArray;
+    var EdgeArray = GR.EdgeArray;
+    const Graph = GR.Graph;
     beforeAll(function() {
         console.log('\n.........Graph Spec.........');
     });
