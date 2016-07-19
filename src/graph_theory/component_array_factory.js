@@ -13,7 +13,7 @@ module.exports = function(NodeArray, NodeClass) {
      * @exports ComponentArray
      * @constructor
      * @memberOf! module:GraphTheory
-     * @extends {RobustArray}
+     * @extends RobustArray
      */
     class ComponentArray extends RobustArray.SetifyType(NodeArray) {
         /**

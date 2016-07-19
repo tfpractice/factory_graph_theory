@@ -14,7 +14,7 @@ function RobustArrayFactory(BaseType) {
      */
     let RobustArray = class extends Array {
         /**
-         * @memberof! module:GraphTheory.RobustArray#
+         * @memberof!module: GraphTheory.RobustArray#
          * @inner
          * checks the data type of the new element
          * @param  {Object} argObj
@@ -228,7 +228,6 @@ function RobustArrayFactory(BaseType) {
         /**
          * @memberof! module:GraphTheory.RobustArray#
          * @inner
-         * @memberof! module:GraphTheory.RobustArray
          * @param  {Object} exElem the element to exclude
          * @return {RobustArray} all of the elements in this object excluding exElem
          */
