@@ -1,4 +1,4 @@
-fdescribe('EdgeArray', function() {
+describe('EdgeArray', function() {
     var GR = require('../src/graph_theory');
     var Node = GR.Node;
     var NodeArray = GR.NodeArray;
@@ -17,25 +17,6 @@ fdescribe('EdgeArray', function() {
         altEdge = new Edge(nyc, dc, 10);
         myArray = new EdgeArray(myEdge);
     });
-    // describe('#assignEdge', function() {
-    //     describe('when given a new class dependency ', () => {
-    //         class tempNodeArray extends NodeArray {}
-    //         tempNodeArray.assignNode();
-    //         class SubEdge extends Edge {}
-    //         SubEdge.assignNodeArray(tempNodeArray);
-    //         class SEA extends EdgeArray {}
-    //         SEA.assignEdge(SubEdge);
-    //         it('sets Edge onto protoype', function() {
-    //             expect(SEA.prototype.Edge).toBe(SubEdge);
-    //         });
-    //         it('sets NodeArray onto protoype', function() {
-    //             expect(SEA.prototype.NodeArray).toBe(tempNodeArray);
-    //         });
-    //         it('sets Node property onto protoype', function() {
-    //             expect(SEA.prototype.Node).toBe(tempNodeArray.prototype.Node);
-    //         });
-    //     });
-    // });
     describe('init', function() {
         it('is a typeof Array', function() {
             expect(myArray instanceof Array).toBeTrue();
