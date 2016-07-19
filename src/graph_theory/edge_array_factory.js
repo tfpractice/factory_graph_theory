@@ -7,6 +7,9 @@ var RobustArray = require('./robust_array_factory');
 
 /**
  * Constructs an EdgeArray Class by dependencies
+ * @exports EdgeArrayFactory
+ * @constructor
+ * @memberOf! module:GraphTheory
  * @param  {Function} Edge           The Edge Class
  * @param  {Function} NodeArray      dependency
  * @param  {Function} NodeClass      dependency
