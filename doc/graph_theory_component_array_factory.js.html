@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>DocStrap Classes</title>
+	<title>DocStrap Source: graph_theory/component_array_factory.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -72,121 +72,85 @@
 <div class="row">
 
 	
-	<div class="col-md-8">
+	<div class="col-md-12">
 	
 		<div id="main">
 			
 
-	<h1 class="page-title">Classes</h1>
+		<h1 class="page-title">Source: graph_theory/component_array_factory.js</h1>
+    
 <section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">var NodeArray = require('./node_array_factory');
+var RobustArray = require('./robust_array_factory');
+/**
+ * Constructs a ComponentArray class given dependencies
+ * @param  {Function} NodeArray      dependency
+ * @param  {Function} NodeClass      dependency
+ * @return {Function}                The resulting ComponentArray class
+ */
+module.exports = function(NodeArray, NodeClass) {
+    let Node = NodeClass;
+    /**
+     * represents a set of NodeArrays
+     * @exports ComponentArray
+     * @constructor
+     * @memberOf! module:GraphTheory
+     * @extends {RobustArray}
+     */
+    class ComponentArray extends RobustArray.SetifyType(NodeArray) {
+        /**
+         * adds a component to the graph if not present
+         * @param {Component} compArg
+         */
+        push(compArg) {
+            return this.integrateComponent(compArg) || super.push(compArg);
+        }
+        /**
+         * checks if any components (excluding the argument) share nodes with the argument
+         * @param  {Component}  compArg
+         * @return {Boolean}
+         */
+        hasIntersectingComponent(compArg) {
+            return this.excludeElement(compArg).some(currComp => currComp.intersects(compArg));
+        }
+        /**
+         * returns the first component (excluding the argument) which intersect with compArg
+         * @param  {Component} compArg the component to be checked
+         * @return {Component} the first intersecting component
+         */
+        findIntersectingComponent(compArg) {
+            return this.excludeElement(compArg).find(currComp => currComp.intersects(compArg));
+        }
+        /**
+         * combines the nodes of two intersecting components into orrgComp, and removes newComp
+         * @param  {Component} origComp the component taking precedence
+         * @param  {Component} newComp the component to be removed
+         */
+        mergeComponents(origComp, newComp) {
+            this.removeElement(newComp);
+            return origComp.unionize(newComp);
+        }
+        /**
+         * integrates a component into any of the arrays intersecting components
+         * @param  {Component} compArg
+         */
+        integrateComponent(compArg) {
+            let iComp = this.findIntersectingComponent(compArg);
+            return (!!iComp) &amp;&amp; this.mergeComponents(iComp, compArg);
+        }
 
-<header>
-    
-        <h2>
-        
-        </h2>
-        
-    
-</header>
-
-
-<article>
-    <div class="container-overview">
-    
-        
-
-        
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Classes</h3>
-
-        <dl>
-            <dt><a href="module-GraphTheory.ComponentArray.html">ComponentArray</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-GraphTheory.DirectedEdge.html">DirectedEdge</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-GraphTheory.Edge.html">Edge</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-GraphTheory.EdgeArray.html">EdgeArray</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-GraphTheory.Graph.html">Graph</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-GraphTheory.Node.html">Node</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-GraphTheory.NodeArray.html">NodeArray</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-GraphTheory.RobustArray.html">RobustArray</a></dt>
-            <dd></dd>
-        </dl>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
+    };
+    /**
+     * [An Set of mutually exclusive NodeArrays]{@link module:GraphTheory.ComponentArray}
+     * @typedef {module:GraphTheory.ComponentArray} ComponentArray
+     */
+    return ComponentArray;
+};</pre>
+    </article>
 </section>
+
 
 
 
@@ -196,10 +160,6 @@
 
 	<div class="clearfix"></div>
 
-	
-		<div class="col-md-3">
-			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
-		</div>
 	
 
 </div>

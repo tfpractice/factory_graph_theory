@@ -6,16 +6,14 @@ var RobustArray = require('./robust_array_factory');
 
 
 /**
- * Constructs an EdgeArray Class by dependencies
- * @exports EdgeArrayFactory
- * @constructor
+ * Constructs [an EdgeArray]{@link module:GraphTheory.EdgeArray} Class by dependencies
  * @memberOf! module:GraphTheory
- * @param  {Function} Edge           The Edge Class
- * @param  {Function} NodeArray      dependency
- * @param  {Function} NodeClass      dependency
- * @return {Function}                The resulting EdgeArray class
+ * @param  {Function} Edge           [The Edge Class]{@link module:GraphTheory.Edge}
+ * @param  {Function} NodeArray      [The NodeArray Class]{@link module:GraphTheory.NodeArray}
+ * @param  {Function} NodeClass      [The Node Class]{@link module:GraphTheory.Node}
+ * @return {Function}                [The resulting EdgeArray class]{@link module:GraphTheory.EdgeArray}
  */
-module.exports = function(Edge, NodeArray, NodeClass) {
+function EdgeArrayFactory(Edge, NodeArray, NodeClass) {
 
     let Node = NodeClass;
     /**
@@ -74,3 +72,9 @@ module.exports = function(Edge, NodeArray, NodeClass) {
      */
     return EdgeArray;
 }
+/**
+ * [An EdgeArrayFactory]{@link module:GraphTheory.EdgeArrayFactory}
+ * @typedef {module:GraphTheory.EdgeArrayFactory} EdgeArrayFactory
+ * @exports EdgeArrayFactory
+ */
+module.exports = EdgeArrayFactory;

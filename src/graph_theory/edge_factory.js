@@ -2,12 +2,13 @@ var Node = require('./node');
 var NodeArray = require('./node_array_factory');
 
 /**
- * Constructs an Edge class given dependencies
- * @param  {Function} NodeArray      dependency
- * @param  {Function} NodeClass      dependency
- * @return {Function}                The resulting Edge class
+ * Constructs [an Edge Class]{@link module:GraphTheory.EdgeArray} Class by dependencies
+ * @memberOf! module:GraphTheory
+ * @param  {Function} NodeArray      [The NodeArray Class]{@link module:GraphTheory.NodeArray}
+ * @param  {Function} NodeClass      [The Node Class]{@link module:GraphTheory.Node}
+ * @return {Function}                [The resulting Edge Class]{@link module:GraphTheory.Edge}
  */
-module.exports = function(NodeArray, NodeClass) {
+function EdgeFactory(NodeArray, NodeClass) {
     let Node = NodeClass;
     /**
      * represents a connection between nodes
@@ -104,3 +105,9 @@ module.exports = function(NodeArray, NodeClass) {
      */
     return Edge;
 }
+/**
+ * [An EdgeFactory]{@link module:GraphTheory.EdgeFactory}
+ * @typedef {module:GraphTheory.EdgeFactory} EdgeFactory
+ * @exports EdgeFactory
+ */
+module.exports = EdgeFactory;

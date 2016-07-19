@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>DocStrap Classes</title>
+	<title>DocStrap Source: graph_theory/node.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -72,121 +72,69 @@
 <div class="row">
 
 	
-	<div class="col-md-8">
+	<div class="col-md-12">
 	
 		<div id="main">
 			
 
-	<h1 class="page-title">Classes</h1>
+		<h1 class="page-title">Source: graph_theory/node.js</h1>
+    
 <section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">/**
+ * represent a Node
+ * @exports Node
+ * @constructor
+ * @memberOf module:GraphTheory
+ * @param {String} label  [label property]{@link module:GraphTheory.Node#label}
+ * @param {Object} data the nodes data
+ */
+class Node {
+    constructor(label, data) {
+        this.setLabel(label);
+        this.setData(data);
+    }
+    /**
+     * sets the node's label attribute
+     * @param {String} lbl
+     */
+    setLabel(lbl) {
+        /**
+         * the node identifier
+         * @type {String}
+         */
+        return this.label = lbl;
+    }
+    /**
+     * sets the node's data attribute
+     * @param {Object} d
+     */
+    setData(d) {
+        /**
+         * the node data
+         * @type {Object}
+         */
+        return this.data = d || {};
+    }
+    /**
+     * Checks for identity via label attribute
+     * @param  {Node}  newNode the node to be compared
+     * @return {Boolean}
+     */
+    isEquivalent(newNode) {
+        return this.label === newNode.label;
+    }
+}
 
-<header>
-    
-        <h2>
-        
-        </h2>
-        
-    
-</header>
-
-
-<article>
-    <div class="container-overview">
-    
-        
-
-        
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Classes</h3>
-
-        <dl>
-            <dt><a href="module-GraphTheory.ComponentArray.html">ComponentArray</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-GraphTheory.DirectedEdge.html">DirectedEdge</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-GraphTheory.Edge.html">Edge</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-GraphTheory.EdgeArray.html">EdgeArray</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-GraphTheory.Graph.html">Graph</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-GraphTheory.Node.html">Node</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-GraphTheory.NodeArray.html">NodeArray</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-GraphTheory.RobustArray.html">RobustArray</a></dt>
-            <dd></dd>
-        </dl>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
+/**
+ * [A Node]{@link module:GraphTheory.Node}
+ * @typedef {module:GraphTheory.Node} Node
+ */
+module.exports = Node;</pre>
+    </article>
 </section>
+
 
 
 
@@ -196,10 +144,6 @@
 
 	<div class="clearfix"></div>
 
-	
-		<div class="col-md-3">
-			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
-		</div>
 	
 
 </div>

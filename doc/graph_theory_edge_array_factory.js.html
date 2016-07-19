@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>DocStrap Source: graphTheory/node_array.js</title>
+	<title>DocStrap Source: graph_theory/edge_array_factory.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -33,7 +33,7 @@
 			<li class="dropdown">
 				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="module-GraphTheory.html">GraphTheory</a></li>
+					<li><a href="module-EdgeArrayFactory.html">EdgeArrayFactory</a></li><li><a href="module-EdgeFactory.html">EdgeFactory</a></li><li><a href="module-GraphFactory.html">GraphFactory</a></li><li><a href="module-GraphTheory.html">GraphTheory</a></li><li><a href="module-NodeArrayFactory.html">NodeArrayFactory</a></li><li><a href="module-RobustArrayFactory.html">RobustArrayFactory</a></li>
 				</ul>
 			</li>
 			
@@ -77,36 +77,91 @@
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: graphTheory/node_array.js</h1>
+		<h1 class="page-title">Source: graph_theory/edge_array_factory.js</h1>
     
 <section>
     <article>
         <pre
             class="sunlight-highlight-javascript linenums">var Node = require('./node');
-var RobustArray = require('./robust_array');
+var NodeArray = require('./node_array_factory');
+var Edge = require('./edge_factory');
+// var DirectedEdge = require('./directedEdge');
+var RobustArray = require('./robust_array_factory');
+
+
 /**
- * represents a set of Nodes
- * @exports NodeArray
- * @constructor
- * @extends {RobustArray}
+ * Constructs [an EdgeArray]{@link module:GraphTheory.EdgeArray} Class by dependencies
  * @memberOf! module:GraphTheory
+ * @param  {Function} Edge           [The Edge Class]{@link module:GraphTheory.Edge}
+ * @param  {Function} NodeArray      [The NodeArray Class]{@link module:GraphTheory.NodeArray}
+ * @param  {Function} NodeClass      [The Node Class]{@link module:GraphTheory.Node}
+ * @return {Function}                [The resulting EdgeArray class]{@link module:GraphTheory.EdgeArray}
  */
-class NodeArray extends RobustArray.SetifyType(Node) {
+function EdgeArrayFactory(Edge, NodeArray, NodeClass) {
+
+    let Node = NodeClass;
     /**
-     * defines NodeClass  on the Prototype chain for runtime extension
-     * @param  {Function} NClass the Node function this class depends upon
-     * @return {Function}  the updated NodeArray class
+     * represents a set of Edges
+     * @exports EdgeArray
+     * @constructor
+     * @memberOf! module:GraphTheory
+     * @extends {RobustArray}
      */
-    static assignNode(nClass = Node) {
-        this.prototype.Node = nClass;
+    class EdgeArray extends RobustArray.SetifyType(Edge) {
+        /**
+         * Filters the edges by those which contain the specified node
+         * @param  {Node} nArg the node in question
+         * @return {EdgeArray} the filtered array
+         */
+        edgesWithNode(nArg) {
+            return this.filter(e => e.containsNode(nArg));
+        }
+        /**/
+        edgeByNodes(n1, n2) {
+            return this.find(e => (e.containsNode(n1) &amp;&amp; e.containsNode(n2)));
+        }
+        /**
+         *
+         * @param  {NodeArray} nArr the nodes to be matched against
+         * @return {EdgeArray}      the edges intersecting nArr
+         */
+        edgesByArray(nArr) {
+            return nArr.reduce((eArr, nNode) => eArr.unionize(this.edgesWithNode(nNode)), new this.constructor());
+        }
+        /**
+         * @return {NodeArray}      all of the nodes in this array of edges
+         */
+        getNodes() {
+            return this.nodeMap().reduce((pred, succ) => pred.unionize(succ), new NodeArray);
+        }
+        /**
+         * @param  {NodeArray} nArg the node to be matched against
+         * @return {NodeArray}      all of the nodes contained in this array
+         */
+        getNeighbors(nArg) {
+            let sharedEdges = this.edgesWithNode(nArg);
+            return (!sharedEdges.isEmpty() &amp;&amp; sharedEdges.map(e => e.nabeArray(nArg)).reduce((pred, succ) => pred.unionize(succ))) || new NodeArray;
+        }
+        /**
+         * @return {NodeArray[]} an array of all the nodes in this collection od edges
+         */
+        nodeMap() {
+            return ((!this.isEmpty()) &amp;&amp; this.map(e => e.nodes)) || new NodeArray;
+        }
+
     }
-};
-NodeArray.assignNode();
+    /**
+     * [An EdgeArray]{@link module:GraphTheory.EdgeArray}
+     * @typedef {module:GraphTheory.EdgeArray} EdgeArray
+     */
+    return EdgeArray;
+}
 /**
- * [A NodeArray]{@link module:GraphTheory.NodeArray}
- * @typedef {module:GraphTheory.NodeArray} NodeArray
+ * [An EdgeArrayFactory]{@link module:GraphTheory.EdgeArrayFactory}
+ * @typedef {module:GraphTheory.EdgeArrayFactory} EdgeArrayFactory
+ * @exports EdgeArrayFactory
  */
-module.exports = NodeArray;</pre>
+module.exports = EdgeArrayFactory;</pre>
     </article>
 </section>
 
@@ -149,7 +204,7 @@ module.exports = NodeArray;</pre>
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a>
 	
-		on Fri Jul 15th 2016
+		on Tue Jul 19th 2016
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

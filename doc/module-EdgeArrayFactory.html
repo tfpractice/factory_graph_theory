@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>DocStrap Source: graphTheory/edge_array.js</title>
+	<title>DocStrap Module: EdgeArrayFactory</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -33,7 +33,7 @@
 			<li class="dropdown">
 				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="module-GraphTheory.html">GraphTheory</a></li>
+					<li><a href="module-EdgeArrayFactory.html">EdgeArrayFactory</a></li><li><a href="module-EdgeFactory.html">EdgeFactory</a></li><li><a href="module-GraphFactory.html">GraphFactory</a></li><li><a href="module-GraphTheory.html">GraphTheory</a></li><li><a href="module-NodeArrayFactory.html">NodeArrayFactory</a></li><li><a href="module-RobustArrayFactory.html">RobustArrayFactory</a></li>
 				</ul>
 			</li>
 			
@@ -72,91 +72,100 @@
 <div class="row">
 
 	
-	<div class="col-md-12">
+	<div class="col-md-8">
 	
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: graphTheory/edge_array.js</h1>
-    
+	<h1 class="page-title">Module: EdgeArrayFactory</h1>
 <section>
-    <article>
-        <pre
-            class="sunlight-highlight-javascript linenums">var Node = require('./node');
-var NodeArray = require('./node_array');
-var Edge = require('./edge');
-// var DirectedEdge = require('./directedEdge');
-var RobustArray = require('./robust_array');
-/**
- * represents a set of Edges
- * @exports EdgeArray
- * @constructor
- * @memberOf! module:GraphTheory
- * @extends {RobustArray}
- */
-class EdgeArray extends RobustArray.SetifyType(Edge) {
-    /**
-     * defines EdgeClass (and associated dependencies) on the Prototype chain for runtime extension
-     * @param  {Function} EClass the Edge function this class depends upon
-     * @return {Function} EdgeArray the updated EdgeArray class
-     */
-    static assignEdge(EClass = Edge) {
-        this.prototype.Edge = EClass;
-        this.prototype.NodeArray = EClass.prototype.NodeArray;
-        this.prototype.Node = EClass.prototype.Node;
-        return this;
-    }
-    /**
-     * Filters the edges by those which contain the specified node
-     * @param  {Node} nArg the node in question
-     * @return {EdgeArray} the filtered array
-     */
-    edgesWithNode(nArg) {
-        return this.filter(e => e.containsNode(nArg));
-    }
-    /**/
-    edgeByNodes(n1, n2) {
-        return this.find(e => (e.containsNode(n1) &amp;&amp; e.containsNode(n2)));
-    }
-    /**
-     *
-     * @param  {NodeArray} nArr the nodes to be matched against
-     * @return {EdgeArray}      the edges intersecting nArr
-     */
-    edgesByArray(nArr) {
-        return nArr.reduce((eArr, nNode) => eArr.unionize(this.edgesWithNode(nNode)), new this.constructor());
-    }
-    /**
-     * @return {NodeArray}      all of the nodes in this array of edges
-     */
-    getNodes() {
-        return this.nodeMap().reduce((pred, succ) => pred.unionize(succ), new this.NodeArray);
-    }
-    /**
-     * @param  {NodeArray} nArg the node to be matched against
-     * @return {NodeArray}      all of the nodes contained in this array
-     */
-    getNeighbors(nArg) {
-        let sharedEdges = this.edgesWithNode(nArg);
-        return (!sharedEdges.isEmpty() &amp;&amp; sharedEdges.map(e => e.nabeArray(nArg)).reduce((pred, succ) => pred.unionize(succ))) || new this.NodeArray;
-    }
-    /**
-     * @return {NodeArray[]} an array of all the nodes in this collection od edges
-     */
-    nodeMap() {
-        return ((!this.isEmpty()) &amp;&amp; this.map(e => e.nodes)) || new this.NodeArray;
-    }
 
-}
-EdgeArray.assignEdge();
-/**
- * [An EdgeArray]{@link module:GraphTheory.EdgeArray}
- * @typedef {module:GraphTheory.EdgeArray} EdgeArray
- */
-module.exports = EdgeArray;</pre>
-    </article>
+<header>
+    
+</header>
+
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><a href="module-GraphTheory.html#.EdgeArrayFactory"><code>An EdgeArrayFactory</code></a></div>
+        
+
+        
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+	<dt class="tag-source method-doc-label method-doc-details-label">Source:</dt>
+	<dd class="tag-source">
+		<ul class="dummy">
+			<li>
+				<a href="graph_theory_edge_array_factory.js.html">graph_theory/edge_array_factory.js</a>,
+				 <a href="graph_theory_edge_array_factory.js.html#sunlight-1-line-75">line 75</a>
+			</li>
+		</ul>
+	</dd>
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
 </section>
-
 
 
 
@@ -166,6 +175,10 @@ module.exports = EdgeArray;</pre>
 
 	<div class="clearfix"></div>
 
+	
+		<div class="col-md-3">
+			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
+		</div>
 	
 
 </div>
@@ -196,7 +209,7 @@ module.exports = EdgeArray;</pre>
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a>
 	
-		on Fri Jul 15th 2016
+		on Tue Jul 19th 2016
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

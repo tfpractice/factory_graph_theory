@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>DocStrap Source: graphTheory/component_array.js</title>
+	<title>DocStrap Source: graph_theory/dependency_injector.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -33,7 +33,7 @@
 			<li class="dropdown">
 				<a href="modules.list.html" class="dropdown-toggle" data-toggle="dropdown">Modules<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="module-GraphTheory.html">GraphTheory</a></li>
+					<li><a href="module-EdgeArrayFactory.html">EdgeArrayFactory</a></li><li><a href="module-EdgeFactory.html">EdgeFactory</a></li><li><a href="module-GraphFactory.html">GraphFactory</a></li><li><a href="module-GraphTheory.html">GraphTheory</a></li><li><a href="module-NodeArrayFactory.html">NodeArrayFactory</a></li><li><a href="module-RobustArrayFactory.html">RobustArrayFactory</a></li>
 				</ul>
 			</li>
 			
@@ -77,81 +77,79 @@
 		<div id="main">
 			
 
-		<h1 class="page-title">Source: graphTheory/component_array.js</h1>
+		<h1 class="page-title">Source: graph_theory/dependency_injector.js</h1>
     
 <section>
     <article>
         <pre
-            class="sunlight-highlight-javascript linenums">var NodeArray = require('./node_array');
-var RobustArray = require('./robust_array');
+            class="sunlight-highlight-javascript linenums">var argsList = require('args-list');
 /**
- * represents a set of NodeArrays
- * @exports ComponentArray
- * @constructor
- * @memberOf! module:GraphTheory
- * @extends {RobustArray}
+ * [An Injector]{@link module:GraphTheory.Injector}
+ * @typedef {module:GraphTheory.Injector} Injector
  */
-class ComponentArray extends RobustArray.SetifyType(NodeArray) {
-
-    /**
-     * Places NodeArray (and associated dependencies) in the Prototype chain for classical extension
-     * @param  {Function} NAClass the NodeArray class this Class depends upon
-     * @return {Function}
-     */
-    static assignNodeArray(NAClass = NodeArray) {
-        this.prototype.NodeArray = NAClass;
-        this.prototype.Node = NAClass.prototype.Node;
-        return this;
-    }
-    /**
-     * adds a component to the graph if not present
-     * @param {Component} compArg
-     */
-    push(compArg) {
-        return this.integrateComponent(compArg) || super.push(compArg);
-    }
-    /**
-     * checks if any components (excluding the argument) share nodes with the argument
-     * @param  {Component}  compArg
-     * @return {Boolean}
-     */
-    hasIntersectingComponent(compArg) {
-        return this.excludeElement(compArg).some(currComp => currComp.intersects(compArg));
-    }
-    /**
-     * returns the first component (excluding the argument) which intersect with compArg
-     * @param  {Component} compArg the component to be checked
-     * @return {Component} the first intersecting component
-     */
-    findIntersectingComponent(compArg) {
-        return this.excludeElement(compArg).find(currComp => currComp.intersects(compArg));
-    }
-    /**
-     * combines the nodes of two intersecting components into orrgComp, and removes newComp
-     * @param  {Component} origComp the component taking precedence
-     * @param  {Component} newComp the component to be removed
-     */
-    mergeComponents(origComp, newComp) {
-        this.removeElement(newComp);
-        return origComp.unionize(newComp);
-    }
-    /**
-     * integrates a component into any of the arrays intersecting components
-     * @param  {Component} compArg
-     */
-    integrateComponent(compArg) {
-        let iComp = this.findIntersectingComponent(compArg);
-        return (!!iComp) &amp;&amp; this.mergeComponents(iComp, compArg);
-    }
-
-};
-
-ComponentArray.assignNodeArray();
 /**
- * [An Set of mutually exclusive NodeArrays]{@link module:GraphTheory.ComponentArray}
- * @typedef {module:GraphTheory.ComponentArray} ComponentArray
+ *
+ * @return {Injector} a container managing dependencies for each of the classes
  */
-module.exports = ComponentArray;</pre>
+module.exports = function Injector() {
+    /**
+     * a key value store of all classes
+     * @type {Object}
+     */
+    var dependencies = {};
+    /**
+     * the facotries creating each type
+     * @type {Object}
+     */
+    var factories = {};
+    /**
+     * the containter object that will build the dependency tree
+     * @type {Object}
+     */
+    var container = {};
+    /**
+     * sets the factory module given name
+     * @param  {String} name the name of the factory producing the class
+     * @param  {Function} fMod the function/module that produces the class
+     */
+    container.factory = function setFactory(name, fMod) {
+        factories[name] = fMod;
+
+    };
+    /**
+     * registers a dependency with a module
+     * @param  {Stinrg} name the name of the dependency
+     * @param  {Fucntion} dep  the source file/function of the dependency
+     */
+    container.register = function register(name, dep) {
+        dependencies[name] = dep;
+    }
+    /**
+     * calls the factory method on the specified module and retrieves all depenencues before returning the requested class
+     * @param  {Sting} name The name of the class to be returned
+     * @return {Function}      the class requested
+     */
+    container.retrieve = function retrieve(name) {
+        if (!dependencies[name]) {
+            let factory = factories[name];
+            dependencies[name] = factory &amp;&amp; container.inject(factory);
+            if (!dependencies[name]) {
+                throw new Error('Cannot find module: ' + name);
+            }
+        }
+        return dependencies[name];
+    }
+    /**
+     * injects the dependencies of each module via calling it's method
+     * @param  {Function} factory The class creating factory
+     * @return {Function}         the class requested
+     */
+    container.inject = function inject(factory) {
+        let fArgs = argsList(factory).map(depArg => container.retrieve(depArg));
+        return factory.apply(null, fArgs);
+    };
+    return container;
+};</pre>
     </article>
 </section>
 
@@ -194,7 +192,7 @@ module.exports = ComponentArray;</pre>
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a>
 	
-		on Fri Jul 15th 2016
+		on Tue Jul 19th 2016
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

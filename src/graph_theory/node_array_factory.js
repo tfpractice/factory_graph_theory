@@ -2,11 +2,12 @@ var Node = require('./node');
 var RobustArray = require('./robust_array_factory');
 
 /**
- * Constructs the NodeArray crom dependencies
- * @param  {Function} NodeClass dpeendency
- * @return {Function}           The resulting NodeArray
+ * Constructs [A NodeArray Class]{@link module:GraphTheory.NodeArray} by dependencies
+ * @memberOf! module:GraphTheory
+ * @param  {Function} NodeClass      [The Node Class]{@link module:GraphTheory.Node}
+ * @return {Function}                [The resulting NodeArray Class]{@link module:GraphTheory.NodeArray}
  */
-module.exports = function(NodeClass) {
+function NodeArrayFactory(NodeClass) {
     let Node = NodeClass;
     /**
      * represents a set of Nodes
@@ -23,3 +24,9 @@ module.exports = function(NodeClass) {
      */
     return NodeArray;
 }
+/**
+ * [An NodeArrayFactory]{@link module:GraphTheory.NodeArrayFactory}
+ * @typedef {module:GraphTheory.NodeArrayFactory} NodeArrayFactory
+ * @exports NodeArrayFactory
+ */
+module.exports = NodeArrayFactory;

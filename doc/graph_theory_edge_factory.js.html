@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>DocStrap Classes</title>
+	<title>DocStrap Source: graph_theory/edge_factory.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -72,121 +72,132 @@
 <div class="row">
 
 	
-	<div class="col-md-8">
+	<div class="col-md-12">
 	
 		<div id="main">
 			
 
-	<h1 class="page-title">Classes</h1>
+		<h1 class="page-title">Source: graph_theory/edge_factory.js</h1>
+    
 <section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">var Node = require('./node');
+var NodeArray = require('./node_array_factory');
 
-<header>
-    
-        <h2>
-        
-        </h2>
-        
-    
-</header>
+/**
+ * Constructs [an Edge Class]{@link module:GraphTheory.EdgeArray} Class by dependencies
+ * @memberOf! module:GraphTheory
+ * @param  {Function} NodeArray      [The NodeArray Class]{@link module:GraphTheory.NodeArray}
+ * @param  {Function} NodeClass      [The Node Class]{@link module:GraphTheory.Node}
+ * @return {Function}                [The resulting Edge Class]{@link module:GraphTheory.Edge}
+ */
+function EdgeFactory(NodeArray, NodeClass) {
+    let Node = NodeClass;
+    /**
+     * represents a connection between nodes
+     * @exports Edge
+     * @constructor
+     * @memberOf! module:GraphTheory
+     */
+    class Edge {
 
+        /**
+         * creates an edge connecting two nodes
+         * @param  {Node}   n1
+         * @param  {Node}   n2
+         * @param  {Number} [weight=0] the value associated with the edge
+         * @return {Edge} the new edge
+         */
+        constructor(n1 = new Node(), n2 = new Node(), weight = 0) {
+            /**
+             * the weight of the edge
+             * @type {Number}
+             */
+            this.weight = weight;
+            this.establishNodes(n1, n2);
+            this.setLabel();
+        }
 
-<article>
-    <div class="container-overview">
-    
-        
+        establishNodes(n1, n2) {
+            /**
+             * an array of nodes
+             * @type {NodeArray}
+             */
+            this.nodes = NodeArray.of(n1, n2);
+        }
+        setLabel() {
+            /**
+             * an identifier for the Edge
+             * @type {String}
+             */
+            this.label = `${this.nodes[0].label}_${this.nodes[1].label}`;
+        }
+        /**
+         * checks the equivalence (by nodes) of this edge against another
+         * @param  {Edge}  edgeArg edge to be checked
+         * @return {Boolean}
+         */
+        isEquivalent(edgeArg) {
+            return this.hasSameNodes(edgeArg);
+        }
 
-        
-<dl class="details">
-    
+        /**
+         * checks the equivalence of this edge's label against another
+         * @param  {Edge}  edgeArg edge to be checked
+         * @return {Boolean}
+         */
+        hasSameName(edgeArg) {
+            return (this.label) ? this.label === edgeArg.label : false;
+        }
+        /**
+         * checks the equivalence of this edges nodes against another
+         * @param  {Edge}  edgeArg edge to be checked
+         * @return {Boolean}
+         */
+        hasSameNodes(edgeArg) {
+            return this.nodes.isEquivalent(edgeArg.nodes);
+        }
+        /**
+         * Checks for the presence of a node in this edge
+         * @param  {Node} nodeArg
+         * @return {Boolean}
+         */
+        containsNode(nodeArg) {
+            return this.nodes.contains(nodeArg);
+        }
+        /**
+         * @param  {Node} nodeArg
+         * @return {Node} the neighbor
+         */
+        getNeighbor(nodeArg) {
+            return this.nodes.find(currNode => currNode != nodeArg);
+        }
+        /**
+         * typecasts the neighboring node as a NodeArray with a single element (for method chaining)
+         * @param  {Node} nodeArg
+         * @return {NodeArray}         an Array of the neighboring node
+         */
+        nabeArray(nodeArg) {
+            return this.nodes.excludeElement(nodeArg);
+        }
 
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Classes</h3>
-
-        <dl>
-            <dt><a href="module-GraphTheory.ComponentArray.html">ComponentArray</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-GraphTheory.DirectedEdge.html">DirectedEdge</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-GraphTheory.Edge.html">Edge</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-GraphTheory.EdgeArray.html">EdgeArray</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-GraphTheory.Graph.html">Graph</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-GraphTheory.Node.html">Node</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-GraphTheory.NodeArray.html">NodeArray</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-GraphTheory.RobustArray.html">RobustArray</a></dt>
-            <dd></dd>
-        </dl>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
+    }
+    /**
+     * [An Edge]{@link module:GraphTheory.Edge}
+     * @typedef {module:GraphTheory.Edge} Edge
+     */
+    return Edge;
+}
+/**
+ * [An EdgeFactory]{@link module:GraphTheory.EdgeFactory}
+ * @typedef {module:GraphTheory.EdgeFactory} EdgeFactory
+ * @exports EdgeFactory
+ */
+module.exports = EdgeFactory;</pre>
+    </article>
 </section>
+
 
 
 
@@ -196,10 +207,6 @@
 
 	<div class="clearfix"></div>
 
-	
-		<div class="col-md-3">
-			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
-		</div>
 	
 
 </div>

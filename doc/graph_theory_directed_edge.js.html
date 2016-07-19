@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>DocStrap Classes</title>
+	<title>DocStrap Source: graph_theory/directed_edge.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -72,121 +72,45 @@
 <div class="row">
 
 	
-	<div class="col-md-8">
+	<div class="col-md-12">
 	
 		<div id="main">
 			
 
-	<h1 class="page-title">Classes</h1>
+		<h1 class="page-title">Source: graph_theory/directed_edge.js</h1>
+    
 <section>
+    <article>
+        <pre
+            class="sunlight-highlight-javascript linenums">var Node = require('./node');
+var NodeArray = require('./node_array_factory');
+var Edge = require('./edge_factory');
 
-<header>
-    
-        <h2>
-        
-        </h2>
-        
-    
-</header>
+/**
+ * represents a connection between nodes
+ * @exports DirectedEdge
+ * @constructor
+ * @memberOf! module:GraphTheory
+ */
+class DirectedEdge extends Edge {
+    constructor(src = new Node(), dest = new Node(), weight = 0) {
+        super(src, dest, weight);
+        this.source = src;
+        this.dest = dest;
 
-
-<article>
-    <div class="container-overview">
-    
-        
-
-        
-<dl class="details">
-    
-
-	
-
-	
-
-	
-
-    
-
-    
-
-    
-
-    
-
-	
-
-	
-
-	
-
-	
-
-	
-
-
-
-	
-
-	
-
-	
-
-	
-</dl>
-
-
-        
-    
-    </div>
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Classes</h3>
-
-        <dl>
-            <dt><a href="module-GraphTheory.ComponentArray.html">ComponentArray</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-GraphTheory.DirectedEdge.html">DirectedEdge</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-GraphTheory.Edge.html">Edge</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-GraphTheory.EdgeArray.html">EdgeArray</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-GraphTheory.Graph.html">Graph</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-GraphTheory.Node.html">Node</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-GraphTheory.NodeArray.html">NodeArray</a></dt>
-            <dd></dd>
-        
-            <dt><a href="module-GraphTheory.RobustArray.html">RobustArray</a></dt>
-            <dd></dd>
-        </dl>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
+    }
+    isEquivalent(edgeArg) {
+        return (edgeArg instanceof DirectedEdge) ? super.isEquivalent(edgeArg) : false;
+    }
+}
+/**
+ * [A DirectedEdge]{@link module:GraphTheory.DirectedEdge}
+ * @typedef {module:GraphTheory.DirectedEdge} DirectedEdge
+ */
+module.exports = DirectedEdge;</pre>
+    </article>
 </section>
+
 
 
 
@@ -196,10 +120,6 @@
 
 	<div class="clearfix"></div>
 
-	
-		<div class="col-md-3">
-			<div id="toc" class="col-md-3 hidden-xs hidden-sm hidden-md"></div>
-		</div>
 	
 
 </div>
